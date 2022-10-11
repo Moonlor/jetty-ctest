@@ -45,10 +45,45 @@ public abstract class Holder<T> extends BaseHolder<T>
 {
     private static final Logger LOG = Log.getLogger(Holder.class);
 
-    private final Map<String, String> _initParams = new HashMap<String, String>(3);
+    private final Map<String, String> _initParams = new HashMap<String, String>(3)
+    {
+        @Override
+        public String get(Object key) 
+        {
+            LOG.warn("[CTEST][GET-PARAM] " + key); //CTEST
+            return super.get(key);
+        }
+
+        @Override
+        public String put(String key, String value) 
+        {
+            LOG.warn("[CTEST][SET-PARAM] " + key + getStackTrace()); //CTEST
+            return super.put(key, value);
+        }
+
+        @Override
+        public void putAll(Map<? extends String, ? extends String> m) 
+        {
+            for (Map.Entry<? extends String, ? extends String> en : m.entrySet()) 
+            {
+                LOG.warn("[CTEST][SET-PARAM] " + en.getKey() + getStackTrace()); //CTEST
+            }
+            super.putAll(m);
+        }
+    };
     private String _displayName;
     private boolean _asyncSupported;
     private String _name;
+
+    private String getStackTrace() 
+    {
+        String stacktrace = " ";
+        for (StackTraceElement element : Thread.currentThread().getStackTrace()) 
+        {
+            stacktrace = stacktrace.concat(element.getClassName() + "\t");
+        }
+        return stacktrace;
+    }  
 
     protected Holder(Source source)
     {

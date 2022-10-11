@@ -197,8 +197,26 @@ public class XmlConfiguration
         return uri;
     }
 
-    private final Map<String, Object> _idMap = new HashMap<>();
-    private final Map<String, String> _propertyMap = new HashMap<>();
+    private final Map<String, Object> _idMap = new HashMap<String, Object>()
+    {
+        @Override
+        public Object get(Object key) 
+        {
+            LOG.warn("[CTEST] _idMap ================= get key {}", key);
+            return super.get(key);
+        }
+    };
+
+    private final Map<String, String> _propertyMap = new HashMap<String, String>()
+    {
+        @Override
+        public String get(Object key) 
+        {
+            LOG.warn("[CTEST] _propertyMap ================= get key {}", key);
+            Object r = super.get(key);
+            return r == null ? null : r.toString();
+        }
+    };
     private final Resource _location;
     private final String _dtd;
     private ConfigurationProcessor _processor;
@@ -867,6 +885,9 @@ public class XmlConfiguration
             String id = node.getAttribute("id");
             if (LOG.isDebugEnabled())
                 LOG.debug("XML get " + name);
+
+            
+            LOG.warn("[CTEST] get ================= get name {}", name);
 
             try
             {
