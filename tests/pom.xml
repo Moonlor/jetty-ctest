@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.eclipse.jetty</groupId>
+    <artifactId>jetty-project</artifactId>
+    <version>9.4.49.v20220914</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+  <groupId>org.eclipse.jetty.tests</groupId>
+  <artifactId>tests-parent</artifactId>
+  <name>Jetty Tests :: Parent</name>
+  <packaging>pom</packaging>
+  <properties>
+    <spotbugs.skip>true</spotbugs.skip>
+    <!-- No point deploying testing projects -->
+    <maven.deploy.skip>true</maven.deploy.skip>
+    <maven.source.skip>true</maven.source.skip>
+    <maven.javadoc.skip>true</maven.javadoc.skip>
+  </properties>
+  <modules>
+    <module>test-webapps</module>
+    <module>test-sessions</module>
+    <module>test-continuation</module>
+    <module>test-loginservice</module>
+    <module>test-integration</module>
+    <module>test-quickstart</module>
+    <module>test-jmx</module>
+    <module>test-http-client-transport</module>
+    <module>test-distribution</module>
+  </modules>
+</project>
