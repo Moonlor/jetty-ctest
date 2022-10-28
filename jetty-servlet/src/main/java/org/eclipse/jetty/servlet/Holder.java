@@ -51,6 +51,7 @@ public abstract class Holder<T> extends BaseHolder<T>
         public String get(Object key) 
         {
             LOG.warn("[CTEST][GET-PARAM] " + key); //CTEST
+            LOG.warn("[CTEST][GET-PARAM-VAL] " + key + " -> " + super.get(key)); //CTEST
             return super.get(key);
         }
 
@@ -58,6 +59,7 @@ public abstract class Holder<T> extends BaseHolder<T>
         public String put(String key, String value) 
         {
             LOG.warn("[CTEST][SET-PARAM] " + key + getStackTrace()); //CTEST
+            LOG.warn("[CTEST][SET-PARAM-VAL] " + key + " -> " + value); //CTEST
             return super.put(key, value);
         }
 
@@ -67,6 +69,7 @@ public abstract class Holder<T> extends BaseHolder<T>
             for (Map.Entry<? extends String, ? extends String> en : m.entrySet()) 
             {
                 LOG.warn("[CTEST][SET-PARAM] " + en.getKey() + getStackTrace()); //CTEST
+                LOG.warn("[CTEST][SET-PARAM-VAL] " + en.getKey() + " -> " + en.getValue()); //CTEST
             }
             super.putAll(m);
         }
@@ -183,6 +186,7 @@ public abstract class Holder<T> extends BaseHolder<T>
     public void setInitParameters(Map<String, String> map)
     {
         _initParams.clear();
+        // LOG.warn("[CTEST][setInitParameters-1]");
         _initParams.putAll(map);
     }
 
@@ -319,6 +323,7 @@ public abstract class Holder<T> extends BaseHolder<T>
             }
             if (clash != null)
                 return clash;
+            // LOG.warn("[CTEST][setInitParameters-2]");
             Holder.this.getInitParameters().putAll(initParameters);
             return Collections.emptySet();
         }

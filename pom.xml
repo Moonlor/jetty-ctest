@@ -514,6 +514,13 @@
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <!-- <artifactId>maven-surefire-plugin</artifactId>
+          <configuration>
+            <reportFormat>plain</reportFormat>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId> -->
           <artifactId>maven-antrun-plugin</artifactId>
           <version>${maven.antrun.plugin.version}</version>
           <dependencies>
@@ -714,6 +721,7 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${maven.surefire.plugin.version}</version>
           <configuration>
+            <reportFormat>plain</reportFormat>
             <trimStackTrace>false</trimStackTrace>
             <rerunFailingTestsCount>${surefire.rerunFailingTestsCount}</rerunFailingTestsCount>
             <forkedProcessTimeoutInSeconds>3600</forkedProcessTimeoutInSeconds>
